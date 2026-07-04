@@ -2,9 +2,23 @@
 // src/components/Header.astro
 
 const menuItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
+  {
+    label: 'Home',
+    href: '/',
+    image: 'https://static.wixstatic.com/media/6dfab9_4daddee4cb874740a21db7a7eb729b98~mv2.jpg/v1/fill/w_1600,h_772,fp_0.65_0.48,q_85,enc_avif,quality_auto/6dfab9_4daddee4cb874740a21db7a7eb729b98~mv2.jpg',
+  },
+  {
+    label: 'Projects',
+    href: '/projects',
+    image: 'https://static.wixstatic.com/media/6dfab9_ec23478cf5b44f6795704f984f4ccf08~mv2.jpg/v1/fill/w_1898,h_915,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6dfab9_ec23478cf5b44f6795704f984f4ccf08~mv2.jpg',
+  },
 ];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActivePath = (href: string) => {
+  const normalizedHref = href.replace(/\/$/, '') || '/';
+  return currentPath === normalizedHref;
+};
 
 const socialItems = [
   { label: 'Behance', href: '#', text: 'Be' },
@@ -40,8 +54,9 @@ const socialItems = [
 <div class="menu-layer" id="site-menu" aria-hidden="true" data-menu-layer>
   <img
     class="menu-bg"
-    src="https://static.wixstatic.com/media/6dfab9_4daddee4cb874740a21db7a7eb729b98~mv2.jpg/v1/fill/w_1600,h_772,fp_0.65_0.48,q_85,enc_avif,quality_auto/6dfab9_4daddee4cb874740a21db7a7eb729b98~mv2.jpg"
+    src={menuItems.find((item) => isActivePath(item.href))?.image ?? menuItems[0].image}
     alt=""
+    data-menu-bg
   />
   <div class="menu-tint"></div>
 
@@ -59,7 +74,14 @@ const socialItems = [
 
   <nav class="menu-nav" aria-label="Site pages">
     {menuItems.map((item) => (
-      <a class="menu-link" href={item.href}>{item.label}</a>
+      <a
+        class:list={["menu-link", { "is-active": isActivePath(item.href) }]}
+        href={item.href}
+        data-menu-image={item.image}
+        aria-current={isActivePath(item.href) ? 'page' : undefined}
+      >
+        {item.label}
+      </a>
     ))}
   </nav>
 
@@ -71,29 +93,44 @@ const socialItems = [
 </div>
 
 <script>
-  const header = document.querySelector('[data-site-header]');
-  const openButton = document.querySelector('[data-menu-open]');
-  const closeButton = document.querySelector('[data-menu-close]');
-  const menuLayer = document.querySelector('[data-menu-layer]');
-  const menuLinks = document.querySelectorAll('.menu-link');
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const openButton = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const menuLayer = document.querySelector<HTMLElement>('[data-menu-layer]');
+  const menuBackground = document.querySelector<HTMLImageElement>('[data-menu-bg]');
+  const menuLinks = document.querySelectorAll<HTMLAnchorElement>('.menu-link');
+  const activeMenuLink = document.querySelector<HTMLAnchorElement>('.menu-link.is-active');
+  const defaultMenuImage = activeMenuLink?.dataset.menuImage ?? menuBackground?.src ?? '';
 
   const updateHeader = () => {
     header?.classList.toggle('is-scrolled', window.scrollY > 0);
   };
 
-  const setMenuOpen = (isOpen) => {
+  const setMenuOpen = (isOpen: boolean) => {
     menuLayer?.classList.toggle('is-open', isOpen);
     menuLayer?.setAttribute('aria-hidden', String(!isOpen));
     openButton?.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('menu-open', isOpen);
   };
 
+  const setMenuImage = (image?: string) => {
+    if (menuBackground && image) {
+      menuBackground.src = image;
+    }
+  };
+
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
   openButton?.addEventListener('click', () => setMenuOpen(true));
   closeButton?.addEventListener('click', () => setMenuOpen(false));
-  menuLinks.forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
-  window.addEventListener('keydown', (event) => {
+  menuLinks.forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+    link.addEventListener('mouseenter', () => setMenuImage(link.dataset.menuImage));
+    link.addEventListener('focus', () => setMenuImage(link.dataset.menuImage));
+    link.addEventListener('mouseleave', () => setMenuImage(defaultMenuImage));
+    link.addEventListener('blur', () => setMenuImage(defaultMenuImage));
+  });
+  window.addEventListener('keydown', (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       setMenuOpen(false);
     }
@@ -299,6 +336,10 @@ const socialItems = [
     text-transform: uppercase;
     padding: 10px 0px 0px 0;
     transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+  }
+
+  .menu-link.is-active {
+    color: #FF6A1A;
   }
 
   .menu-link:hover,
