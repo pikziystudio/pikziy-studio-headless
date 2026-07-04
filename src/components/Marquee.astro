@@ -19,7 +19,7 @@ const { text = "PURPOSEFUL CREATION" } = Astro.props;
       {Array.from({ length: 6 }).map(() => (
         <>
           <span class="marquee-text">{text}</span>
-          <span class="marquee-dot">⊖</span>
+          <img class="marquee-icon" src="https://static.wixstatic.com/shapes/6dfab9_5d933c4eb7724328ad02e664eaedfd0b.svg" alt="" />
         </>
       ))}
     </span>
@@ -56,10 +56,20 @@ const { text = "PURPOSEFUL CREATION" } = Astro.props;
     margin: 0 40px;
   }
 
+  .marquee-dot,
+  .marquee-icon {
+    flex-shrink: 0;
+  }
+
   .marquee-dot {
     color: #FFC72C;
     font-size: clamp(28px, 4vw, 48px);
-    flex-shrink: 0;
+  }
+
+  .marquee-icon {
+    width: clamp(28px, 4vw, 48px);
+    height: clamp(28px, 4vw, 48px);
+    object-fit: contain;
   }
 
   @keyframes scroll {
