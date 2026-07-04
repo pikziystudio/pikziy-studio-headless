@@ -1,4 +1,6 @@
 ---
+import Layout from '../layouts/Layout.astro';
+
 const projects = [
   {
     title: 'Brand Systems',
@@ -18,16 +20,7 @@ const projects = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Projects | PikZiy Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body>
+<Layout title="Projects | PikZiy Studio">
     <main class="projects-page">
       <section class="hero">
         <a class="back-link" href="/">PikZiy Studio</a>
@@ -47,8 +40,7 @@ const projects = [
         ))}
       </section>
     </main>
-  </body>
-</html>
+  </Layout>
 
 <style>
   :global(body) {

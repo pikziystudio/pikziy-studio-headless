@@ -1,0 +1,144 @@
+---
+// src/components/Header.astro
+---
+
+<header class="site-header" data-site-header>
+  <a class="logo-wrap" href="/" aria-label="PikZiy Studio home">
+    <!-- Outline layers (visible by default) -->
+    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_b153c484133d4710a02465204b342ff5~mv2.png" alt="" style="--i:0" />
+    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_62e909c46a9640e18522a23ae0e775f6~mv2.png" alt="" style="--i:1" />
+    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_35995797998640e7ab619598fb27cb7a~mv2.png" alt="" style="--i:2" />
+    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_95a45843d84046ef93c86408f49b6e35~mv2.png" alt="" style="--i:3" />
+
+    <!-- Color-filled layers (hidden by default) -->
+    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_70fc4ca050584995acef76e026a09478~mv2.png" alt="" style="--i:0" />
+    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_869fa1895c0d4153aea85814d0ece0e4~mv2.png" alt="" style="--i:1" />
+    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_8ff74665235b4bc498dc1f052232d486~mv2.png" alt="" style="--i:2" />
+    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_e2dcccee6a494eeb8352bdbe7b8d57d7~mv2.png" alt="" style="--i:3" />
+  </a>
+
+  <button class="hamburger" type="button" aria-label="Open menu">
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<script>
+  const header = document.querySelector('[data-site-header]');
+
+  const updateHeader = () => {
+    header?.classList.toggle('is-scrolled', window.scrollY > 0);
+  };
+
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 120px;
+    background: transparent;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+  }
+
+  .site-header.is-scrolled {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .logo-wrap,
+  .hamburger {
+    pointer-events: auto;
+  }
+
+  .logo-wrap {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 98px;
+    height: 80px;
+    cursor: pointer;
+  }
+
+  .logo-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease;
+  }
+
+  .logo-layer.outline {
+    opacity: 1;
+    transition-delay: calc(var(--i) * 0.1s);
+  }
+
+  .logo-layer.fill {
+    opacity: 0;
+    transition-delay: calc(var(--i) * 0s);
+  }
+
+  .logo-wrap:hover .logo-layer.outline {
+    opacity: 0;
+  }
+
+  .logo-wrap:hover .logo-layer.fill {
+    opacity: 1;
+  }
+
+  .hamburger {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 44px;
+    height: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition: transform 0.35s ease, width 0.35s ease;
+  }
+
+  .hamburger:hover span:nth-child(1) {
+    transform: translateY(2px);
+    width: 70%;
+  }
+
+  .hamburger:hover span:nth-child(2) {
+    transform: translateY(-2px);
+    width: 70%;
+  }
+
+  @media (max-width: 820px) {
+    .site-header {
+      height: 98px;
+    }
+
+    .logo-wrap {
+      top: 22px;
+      left: 22px;
+      width: 78px;
+      height: 64px;
+    }
+
+    .hamburger {
+      top: 32px;
+      right: 24px;
+    }
+  }
+</style>
