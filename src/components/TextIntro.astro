@@ -68,9 +68,13 @@
 
 <script>
   const section = document.getElementById('textIntroSection');
-  const highlights = document.querySelectorAll('.highlight');
+  const highlights = document.querySelectorAll<HTMLElement>('.highlight');
 
   function updateFill() {
+    if (!section) {
+      return;
+    }
+
     const rect = section.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
