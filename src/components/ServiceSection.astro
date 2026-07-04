@@ -1,0 +1,118 @@
+---
+interface Props {
+  image: string;
+  label: string;
+  title: string;
+  accentColor?: string;
+  textColor?: string;
+  buttonText?: string;
+  href?: string;
+  stackIndex: number;
+  blendMode?: string; // e.g. "difference", "exclusion", "overlay", "screen"
+}
+
+const {
+  image,
+  label,
+  title,
+  accentColor = "#00C2CB",
+  textColor = "#fff",
+  buttonText = "EXPLORE",
+  href = "#",
+  stackIndex,
+  blendMode = "normal",
+} = Astro.props;
+---
+
+<section class="service-section" style={`z-index:${stackIndex + 1};`}>
+  <img class="service-bg" src={image} alt={title} />
+
+  <div class="service-content">
+    <span class="service-label">{label}</span>
+    <h2
+      class="service-title"
+      style={`color:${textColor}; mix-blend-mode:${blendMode};`}
+    >
+      {title}
+    </h2>
+    <a href={href} class="service-btn">
+      {buttonText} <span class="asterisk">✳</span>
+    </a>
+  </div>
+</section>
+
+<style define:vars={{ accentColor }}>
+  .service-section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .service-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .service-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .service-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 18px 60px;
+    backdrop-filter: blur(4px);
+    position: relative;
+    z-index: 2; /* keeps label crisp, unaffected by blend */
+  }
+
+  .service-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 300;
+    font-size: clamp(60px, 12vw, 160px);
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    blendMode="difference"
+  }
+
+  .service-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FF6A1A;
+    color: #fff;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 18px 32px;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .service-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .asterisk {
+    color: #fff;
+  }
+</style>

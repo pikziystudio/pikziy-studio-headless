@@ -1,8 +1,62 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import LogoGrid from '../components/LogoGrid.astro';
+import TextIntro from '../components/TextIntro.astro';
+import Gallery from '../components/Gallery.astro';
+import StickyVideo from '../components/StickyVideo.astro';
+import ServiceSection from '../components/ServiceSection.astro';
+import ExpandSection from '../components/ExpandSection.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PikZiy Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body style="margin:0;">
+    <Hero />
+    <Marquee text="PURPOSEFUL CREATION" />
+    <Gallery />
+    <StickyVideo />
+	<LogoGrid />
+    <TextIntro />
+	
+	<ServiceSection
+  stackIndex={0}
+  image="https://static.wixstatic.com/media/6dfab9_ec23478cf5b44f6795704f984f4ccf08~mv2.jpg/v1/fill/w_1898,h_915,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6dfab9_ec23478cf5b44f6795704f984f4ccf08~mv2.jpg"
+  label="DEFINE"
+  title="BRAND"
+  href="/brand"
+  />
+  
+  <ServiceSection
+  stackIndex={1}
+  image="https://static.wixstatic.com/media/6dfab9_1fa19c885d9848b18ee2c787dc4d9212~mv2.jpg/v1/fill/w_1898,h_915,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6dfab9_1fa19c885d9848b18ee2c787dc4d9212~mv2.jpg"
+  label="ELEVATE"
+  title="PACKAGING"
+  textColor="#fff"
+  blendMode="difference"
+  href="/packaging"
+  />
+  
+  <ServiceSection
+  stackIndex={2}
+  image="https://static.wixstatic.com/media/6dfab9_fac9dcc31e714c48b75f7efc41eb178e~mv2.jpg/v1/fill/w_1898,h_915,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6dfab9_fac9dcc31e714c48b75f7efc41eb178e~mv2.jpg"
+  label="INTERACT"
+  title="DIGITAL"
+  textColor="#fff"
+  blendMode="difference"
+  href="/digital"
+  />
+
+  <ExpandSection
+  image="https://static.wixstatic.com/media/6dfab9_df2e9389caf940a3939227a73feb1e99~mv2.jpeg/v1/fill/w_1898,h_909,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6dfab9_df2e9389caf940a3939227a73feb1e99~mv2.jpeg"
+  heading="The Impossible Becomes I'm Possible."
+  subtext="Collaborative Design Process: Seamless Creation of Minimal, Modern Spaces through Effective Communication, Meticulous Attention to Detail."
+  />
+  </body>
+</html>

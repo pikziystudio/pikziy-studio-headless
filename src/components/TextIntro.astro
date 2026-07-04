@@ -1,0 +1,90 @@
+---
+---
+
+<section class="text-intro" id="textIntroSection">
+  <h2 class="intro-heading">
+    <span class="highlight line-1">PURPOSEFUL</span><br />
+    <span class="highlight line-2">CREATION</span>
+  </h2>
+
+  <p class="intro-primary">
+    We Don't Just Design For The Present – We Craft Experiences For The Future.
+  </p>
+
+  <p class="intro-secondary">
+    From Concept to Creation – Beautiful designs have the power to captivate audiences
+  </p>
+</section>
+
+<style>
+  .text-intro {
+    background: #000;
+    padding: 100px 60px 140px;
+    position: relative;
+    z-index: 1;
+    text-align: right;
+  }
+
+  .intro-heading {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 1.1;
+    margin: 0 0 60px 0;
+  }
+
+  .highlight {
+    display: inline-block;
+    background-image: linear-gradient(to left, #FF6A1A var(--fill, 0%), #fff var(--fill, 0%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .line-1 {
+    margin-right: 120px;
+  }
+
+  .intro-primary {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: clamp(24px, 3.2vw, 44px);
+    color: #555;
+    line-height: 1.4;
+    max-width: 1100px;
+    margin: 0 0 50px auto;
+  }
+
+  .intro-secondary {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, 1.6vw, 22px);
+    color: #999;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 0 0 auto;
+  }
+</style>
+
+<script>
+  const section = document.getElementById('textIntroSection');
+  const highlights = document.querySelectorAll('.highlight');
+
+  function updateFill() {
+    const rect = section.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    // progress: 0 when section top enters bottom of viewport, 1 when section top reaches top of viewport
+    let progress = 1 - (rect.top / viewportHeight);
+    progress = Math.min(Math.max(progress, 0), 1);
+
+    const percent = `${progress * 125}%`;
+    highlights.forEach((el) => {
+      el.style.setProperty('--fill', percent);
+    });
+  }
+
+  window.addEventListener('scroll', updateFill, { passive: true });
+  window.addEventListener('resize', updateFill);
+  updateFill();
+</script>

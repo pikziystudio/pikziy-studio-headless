@@ -1,0 +1,84 @@
+---
+interface Logo {
+  name: string;
+  src: string;
+}
+
+const logos: Logo[] = [
+  { name: "Teligent", src: "https://static.wixstatic.com/media/6dfab9_d0fc97960fd14a6d910593caab3c72f9~mv2.png" },
+  { name: "Skey Moment", src: "https://static.wixstatic.com/media/6dfab9_3d75e05fb1c844d8a6229166c2303cb4~mv2.png" },
+  { name: "Navami", src: "https://static.wixstatic.com/media/6dfab9_cf1405e0f3da44158d11e6bbe82139dd~mv2.png" },
+  { name: "Intangles", src: "https://static.wixstatic.com/media/6dfab9_8a918ff4293b49f9a3db642167d885e4~mv2.png" },
+  { name: "Heinz", src: "https://static.wixstatic.com/media/6dfab9_6c5ad464a6644cc7848bbf754d20295e~mv2.png" },
+  { name: "Cadbury", src: "https://static.wixstatic.com/media/6dfab9_1eb03c02df934caf991c2acec4964934~mv2.png" },
+  { name: "Bell Immersive Technologies", src: "https://static.wixstatic.com/media/6dfab9_8411cc7d65444159b7c6ff1702d13236~mv2.png" },
+  { name: "TBG", src: "https://static.wixstatic.com/media/6dfab9_4393373bff694a6aa52ee36022abc65f~mv2.png" },
+  { name: "Oreo", src: "https://static.wixstatic.com/media/6dfab9_e876f1e4cb844c06ae48389749604f94~mv2.png" },
+  { name: "Nescafe", src: "https://static.wixstatic.com/media/6dfab9_b1e6d4136fc4476f80f03ae3b4975656~mv2.png" },
+  { name: "HNS Developers", src: "https://static.wixstatic.com/media/6dfab9_4f1e8165f0f145f78ce81e1d9688f2d6~mv2.png" },
+  { name: "Evian", src: "https://static.wixstatic.com/media/6dfab9_ac5213c87d37424a96d1e32e177b1e94~mv2.png" },
+  { name: "Bell Energy", src: "https://static.wixstatic.com/media/6dfab9_436f2ad5cf78479ea9a6ad8607a9a86a~mv2.png" },
+  { name: "Sorigin", src: "https://static.wixstatic.com/media/6dfab9_416147fbc49b494eb3131e90c4c34609~mv2.png" },
+  { name: "OnePlus", src: "https://static.wixstatic.com/media/6dfab9_593b1db840f74cf196b43b1e6b447d7b~mv2.png" },
+  { name: "Nestea", src: "https://static.wixstatic.com/media/6dfab9_e6441144d2334060a7334448ece7373b~mv2.png" },
+  { name: "NXT", src: "https://static.wixstatic.com/media/6dfab9_291914a6d4d04b2aa4674ae2dea9a2f0~mv2.png" },
+  { name: "Heineken", src: "https://static.wixstatic.com/media/6dfab9_7edda9e2aedd4742aa5cee86f869ded4~mv2.png" },
+  { name: "Durex", src: "https://static.wixstatic.com/media/6dfab9_0bed0dee55864cd8bde2cfca53c437cf~mv2.png" },
+];
+---
+
+<section class="logo-section">
+  <div class="logo-grid">
+    {logos.map((logo) => (
+      <div class="logo-item">
+        <img src={logo.src} alt={logo.name} loading="lazy" />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+.logo-section {
+  background: #000;
+  padding: 80px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 60px;
+    column-gap: 20px;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+  }
+
+  .logo-item img {
+    max-width: 100%;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(200%);
+    opacity: 0.9;
+    transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .logo-item:hover img {
+    filter: grayscale(0%) brightness(100%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    .logo-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
