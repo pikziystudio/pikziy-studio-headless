@@ -1,0 +1,339 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const serviceOptions = [
+  'Brand Identity Design',
+  'Graphic Design',
+  'Marketing Collaterals Design',
+  'Packaging Design',
+  'Portfolio Website Design',
+  'E-Commerce Website Design',
+  'Social Media Content Design',
+  'Social Media Marketing',
+  'Anything else',
+];
+
+const budgetOptions = ['1 Lac - 2 Lac', '2 Lac - 3 Lac', '3 Lac - 5 Lac', 'Above 5 Lac'];
+---
+
+<Layout title="Contact | PikZiy Studio">
+  <main class="contact-page">
+    <section class="contact-hero" aria-label="Contact hero">
+      <div class="hero-portrait"></div>
+      <div class="hero-copy">
+        <h1>CONNECT</h1>
+        <p>Bring your ideas to life<br />Let's start a conversation</p>
+      </div>
+    </section>
+
+    <section class="contact-main" aria-label="Contact form and details">
+      <form class="contact-form" data-wix-form="contact" aria-label="Contact form">
+        <h2>Get In Touch</h2>
+
+        <label>
+          <span>What's your name? *</span>
+          <input name="name" type="text" placeholder="Rishabh Khare (Your name)" required />
+        </label>
+
+        <div class="form-row">
+          <label>
+            <span>What's your email? *</span>
+            <input name="email" type="email" placeholder="rishabh@google.com" required />
+          </label>
+          <label>
+            <span>What's your phone number? *</span>
+            <input name="phone" type="tel" placeholder="+91 9876543210" required />
+          </label>
+        </div>
+
+        <label>
+          <span>From *</span>
+          <input name="company" type="text" placeholder="Google (company name)" required />
+        </label>
+
+        <fieldset>
+          <legend>What kind of services are you looking for? *</legend>
+          <div class="chip-grid">
+            {serviceOptions.map((option) => (
+              <label class="chip">
+                <input type="checkbox" name="services" value={option} />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label>
+          <span>Please tell us a bit more about your project</span>
+          <textarea name="project" rows="4"></textarea>
+        </label>
+
+        <fieldset>
+          <legend>What is your budget range? *</legend>
+          <div class="chip-grid budget-grid">
+            {budgetOptions.map((option) => (
+              <label class="chip">
+                <input type="radio" name="budget" value={option} required />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label>
+          <span>How did you hear about us?</span>
+          <select name="source">
+            <option value="">Select</option>
+            <option>Google Search</option>
+            <option>Instagram</option>
+            <option>Referral</option>
+            <option>LinkedIn</option>
+          </select>
+        </label>
+
+        <button class="submit-btn" type="submit">Submit</button>
+      </form>
+
+      <aside class="contact-cards" aria-label="Contact information">
+        <article class="contact-card">
+          <span class="card-icon" aria-hidden="true">⌂</span>
+          <div>
+            <p>Email</p>
+            <a href="mailto:hello@pikziystudio.com">hello@pikziystudio.com</a>
+            <a href="mailto:work@pikziystudio.com">work@pikziystudio.com</a>
+          </div>
+        </article>
+        <article class="contact-card">
+          <span class="card-icon" aria-hidden="true">☏</span>
+          <div>
+            <p>Phone</p>
+            <a href="tel:+918999949439">+91 89999 49 439</a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background: #fff;
+    color: #050505;
+    font-family: 'Unbounded', Arial, sans-serif;
+  }
+
+  .contact-page {
+    overflow-x: hidden;
+  }
+
+  .contact-hero {
+    position: relative;
+    min-height: 590px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 51% 35%, #ffd643 0 15%, #f4a800 42%, #f8ab00 100%);
+  }
+
+  .hero-portrait {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(250, 172, 0, 0.7), rgba(250, 172, 0, 0.12) 45%, rgba(250, 172, 0, 0.72)),
+      url('https://static.wixstatic.com/media/6dfab9_4daddee4cb874740a21db7a7eb729b98~mv2.jpg/v1/fill/w_1200,h_680,fp_0.55_0.35,q_85,enc_avif,quality_auto/6dfab9_4daddee4cb874740a21db7a7eb729b98~mv2.jpg') center / cover;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+    transform: translateY(54px);
+  }
+
+  .hero-copy h1 {
+    margin: 0 0 28px;
+    font-size: clamp(44px, 5vw, 76px);
+    font-weight: 500;
+    line-height: 0.95;
+  }
+
+  .hero-copy p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: Arial, sans-serif;
+    font-size: clamp(18px, 1.7vw, 24px);
+    line-height: 1.35;
+  }
+
+  .contact-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
+    gap: clamp(36px, 5vw, 78px);
+    padding: 76px clamp(30px, 5vw, 64px) 66px;
+    background: #fff;
+  }
+
+  .contact-form h2 {
+    margin: 0 0 32px;
+    font-size: clamp(28px, 3vw, 40px);
+  }
+
+  .contact-form,
+  .contact-form label,
+  .contact-form fieldset {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-form {
+    gap: 22px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .contact-form span,
+  .contact-form legend {
+    margin: 0 0 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    width: 100%;
+    border: 1px solid #111;
+    border-radius: 6px;
+    min-height: 34px;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    font-family: Arial, sans-serif;
+    background: #fff;
+  }
+
+  .contact-form textarea {
+    min-height: 78px;
+    resize: vertical;
+  }
+
+  .contact-form fieldset {
+    gap: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .chip {
+    display: inline-flex;
+  }
+
+  .chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .chip span {
+    margin: 0;
+    border: 1px solid #111;
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .chip input:checked + span {
+    background: #111;
+    color: #fff;
+  }
+
+  .submit-btn {
+    align-self: flex-end;
+    width: min(100%, 300px);
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 28px;
+    background: #ffd400;
+    color: #050505;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+  }
+
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 24px;
+  }
+
+  .contact-card {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    align-items: center;
+    min-height: 132px;
+    border-radius: 16px;
+    background: #e8f1f2;
+    padding: 18px 34px;
+  }
+
+  .card-icon {
+    display: grid;
+    place-items: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: #c4c4c4;
+    font-family: Arial, sans-serif;
+    font-size: 38px;
+  }
+
+  .contact-card p,
+  .contact-card a {
+    margin: 0;
+    color: #6f777a;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+  .contact-card p {
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .contact-main {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      grid-template-columns: 88px 1fr;
+      padding: 18px;
+    }
+
+    .card-icon {
+      width: 68px;
+      height: 68px;
+      font-size: 28px;
+    }
+  }
+</style>
