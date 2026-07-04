@@ -9,24 +9,6 @@
     alt="PikZiy Studio - Global Branding and Design Agency in Pune"
   />
 
-  <div class="logo-wrap">
-    <!-- Outline layers (visible by default) -->
-    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_b153c484133d4710a02465204b342ff5~mv2.png" alt="" style="--i:0" />
-    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_62e909c46a9640e18522a23ae0e775f6~mv2.png" alt="" style="--i:1" />
-    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_35995797998640e7ab619598fb27cb7a~mv2.png" alt="" style="--i:2" />
-    <img class="logo-layer outline" src="https://static.wixstatic.com/media/6dfab9_95a45843d84046ef93c86408f49b6e35~mv2.png" alt="" style="--i:3" />
-
-    <!-- Color-filled layers (hidden by default) -->
-    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_70fc4ca050584995acef76e026a09478~mv2.png" alt="" style="--i:0" />
-    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_869fa1895c0d4153aea85814d0ece0e4~mv2.png" alt="" style="--i:1" />
-    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_8ff74665235b4bc498dc1f052232d486~mv2.png" alt="" style="--i:2" />
-    <img class="logo-layer fill" src="https://static.wixstatic.com/media/6dfab9_e2dcccee6a494eeb8352bdbe7b8d57d7~mv2.png" alt="" style="--i:3" />
-  </div>
-
-  <button class="hamburger" aria-label="Open menu">
-    <span></span>
-    <span></span>
-  </button>
 
   <h1 class="hero-title">PIKZIY STUDIO</h1>
 </section>
@@ -63,75 +45,4 @@
     margin: 0;
   }
 
-  /* --- Logo animation --- */
-  .logo-wrap {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 98px;
-    height: 80px;
-    z-index: 3;
-    cursor: pointer;
-  }
-
-  .logo-layer {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.4s ease;
-  }
-
-  .logo-layer.outline {
-    opacity: 1;
-    transition-delay: calc(var(--i) * 0.1s);
-  }
-
-  .logo-layer.fill {
-    opacity: 0;
-    transition-delay: calc(var(--i) * 0s);
-  }
-
-  .logo-wrap:hover .logo-layer.outline {
-    opacity: 0;
-  }
-
-  .logo-wrap:hover .logo-layer.fill {
-    opacity: 1;
-  }
-
-  /* --- Hamburger menu --- */
-  .hamburger {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    z-index: 3;
-    width: 44px;
-    height: 15px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transition: transform 0.35s ease, opacity 0.35s ease, width 0.35s ease;
-  }
-
-  .hamburger:hover span:nth-child(1) {
-    transform: translateY(2px);
-    width: 70%;
-  }
-
-  .hamburger:hover span:nth-child(3) {
-    transform: translateY(-2px);
-    width: 70%;
-  }
 </style>

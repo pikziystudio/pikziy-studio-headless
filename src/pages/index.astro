@@ -1,4 +1,5 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import LogoGrid from '../components/LogoGrid.astro';
@@ -9,15 +10,7 @@ import ServiceSection from '../components/ServiceSection.astro';
 import ExpandSection from '../components/ExpandSection.astro';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>PikZiy Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body style="margin:0;">
+<Layout title="PikZiy Studio">
     <Hero />
     <Marquee text="PURPOSEFUL CREATION" />
     <Gallery />
@@ -58,5 +51,4 @@ import ExpandSection from '../components/ExpandSection.astro';
   heading="The Impossible Becomes I'm Possible."
   subtext="Collaborative Design Process: Seamless Creation of Minimal, Modern Spaces through Effective Communication, Meticulous Attention to Detail."
   />
-  </body>
-</html>
+  </Layout>
