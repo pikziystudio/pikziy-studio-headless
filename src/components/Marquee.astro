@@ -3,6 +3,7 @@ interface Props {
   text: string;
 }
 const { text = "PURPOSEFUL CREATION" } = Astro.props;
+
 ---
 
 <section class="marquee-section">
@@ -11,7 +12,7 @@ const { text = "PURPOSEFUL CREATION" } = Astro.props;
       {Array.from({ length: 6 }).map(() => (
         <>
           <span class="marquee-text">{text}</span>
-          <span class="marquee-dot">@</span>
+          <span class="marquee-dot">⊖</span>
         </>
       ))}
     </span>
@@ -38,7 +39,7 @@ const { text = "PURPOSEFUL CREATION" } = Astro.props;
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: scroll 20s linear infinite;
+    animation: scroll 30s linear infinite;
   }
 
   .marquee-group {
@@ -49,7 +50,7 @@ const { text = "PURPOSEFUL CREATION" } = Astro.props;
 
   .marquee-text {
     font-family: 'Unbounded', sans-serif;
-    font-weight: 500;
+    font-weight: 300;
     font-size: clamp(32px, 5vw, 64px);
     color: #fff;
     white-space: nowrap;
